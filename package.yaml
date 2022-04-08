@@ -1,0 +1,53 @@
+name:                baseutils
+version:             0.1.0.0
+#synopsis:
+#description:
+homepage:            https://github.com/gbwey/baseutils#readme
+license:             BSD3
+copyright:           2018 Grant Weyburne
+category:            General
+
+dependencies:
+- base >= 4.7 && < 5
+- pretty-simple
+- text
+- unliftio
+- validation-selective
+
+library:
+  source-dirs: src
+  ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wpartial-fields
+  - -Wunused-type-patterns
+  - -Wredundant-constraints
+  - -Wmonomorphism-restriction
+  - -Wmissing-deriving-strategies
+  - -Wmissing-local-signatures
+  - -Widentities
+  - -Wmissing-export-lists
+tests:
+  baseutils-test:
+    main:                Main.hs
+    source-dirs:
+#    - src
+    - test
+    ghc-options:
+    - -Wall
+    - -Wcompat
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wpartial-fields
+    - -Wunused-type-patterns
+    - -Wredundant-constraints
+    - -Wmissing-deriving-strategies
+    - -Wno-missing-export-lists
+    - -Wno-missing-local-signatures
+    dependencies:
+    - base
+    - baseutils
+    - tasty
+    - tasty-hunit
