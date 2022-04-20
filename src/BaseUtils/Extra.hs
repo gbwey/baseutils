@@ -23,7 +23,6 @@ module BaseUtils.Extra (
   isWindows,
   pathSeparator,
   hoistEitherM,
-  hoistValidationM,
   --  GBException' (..),
   --  GBWrapException' (..),
   pattern GBException,
@@ -33,14 +32,11 @@ module BaseUtils.Extra (
 import Control.Monad.IO.Class
 import Data.Text (Text)
 import qualified Data.Text as T
-import qualified Data.Text.Lazy as TL
 import Data.Typeable
 import qualified GHC.Generics as G (Generic)
 import GHC.Stack
 import qualified System.Info as SI
-import Text.Pretty.Simple
 import qualified UnliftIO as U
-import qualified Validation as V
 
 -- | rethrow a wrapped exception unless already wrapped
 rethrow :: (MonadIO m, HasCallStack, U.Exception e) => Text -> e -> m a
@@ -114,12 +110,3 @@ hoistEitherM ::
   m a
 hoistEitherM txt =
   either (\txt1 -> U.throwIO $ GBException (txt <> txt1)) return
-
--- | lift a 'V.Validation' to an exception
-{-# INLINE hoistValidationM #-}
-hoistValidationM ::
-  (HasCallStack, MonadIO m, Show e) =>
-  Text ->
-  V.Validation e a ->
-  m a
-hoistValidationM txt = V.validation (U.throwIO . GBException . (txt <>) . TL.toStrict . pShowOpt defaultOutputOptionsNoColor) return

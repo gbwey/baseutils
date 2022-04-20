@@ -9,10 +9,8 @@ category:            General
 
 dependencies:
 - base >= 4.7 && < 5
-- pretty-simple
 - text
 - unliftio
-- validation-selective
 
 library:
   source-dirs: src

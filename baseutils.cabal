@@ -23,10 +23,8 @@ library
   ghc-options: -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wunused-type-patterns -Wredundant-constraints -Wmonomorphism-restriction -Wmissing-deriving-strategies -Wmissing-local-signatures -Widentities -Wmissing-export-lists
   build-depends:
       base >=4.7 && <5
-    , pretty-simple
     , text
     , unliftio
-    , validation-selective
   default-language: Haskell2010
 
 test-suite baseutils-test
@@ -41,10 +39,8 @@ test-suite baseutils-test
   build-depends:
       base
     , baseutils
-    , pretty-simple
     , tasty
     , tasty-hunit
     , text
     , unliftio
-    , validation-selective
   default-language: Haskell2010
